@@ -21,7 +21,6 @@ def extractor(clientResponse):
         "letras": "/song/lyrics/"
     }
 
-
     if requestType != "letras":
 
         newString = param.replace(' ','%20')
@@ -42,25 +41,22 @@ def extractor(clientResponse):
     res = conn.getresponse()
     data = json.loads(res.read().decode("utf-8"))
     returnString = ""
-    
-    # tratamentos de retorno:
 
+    # tratamentos de retorno:
+    print(requestType)
     if requestType == "info":
         returnString += 'Nomes alternativos:\n'
         for i in data['artist']['alternate_names']:returnString += f'{i}\n'
         returnString += f"\nDescrição:\n{data['artist']['description']['plain']}"
-
     if requestType == "álbuns":
         returnString += "Álbuns:\n"
         for i in data['albums']:
             returnString += f"{i['full_title']}\n"
-            
     if requestType == "música":
         returnString += "Algumas das músicas mais populares:\n"
         for i in data['songs']:
             returnString += f"{i['full_title']} - {i['id']}\n"
-
-    else:
+    if requestType == "letras":
         returnString = f"Letras de {data['lyrics']['tracking_data']['title']}:\n\n"
         returnString += data['lyrics']['lyrics']['body']['plain']
     
