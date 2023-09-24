@@ -60,4 +60,4 @@ def extractor(clientResponse):
         returnString = f"Letras de {data['lyrics']['tracking_data']['title']}:\n\n"
         returnString += data['lyrics']['lyrics']['body']['plain']
     
-    return returnString,url
+    return returnString
