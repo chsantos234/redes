@@ -43,7 +43,6 @@ def extractor(clientResponse):
     returnString = ""
 
     # tratamentos de retorno:
-
     if requestType == "info":
         returnString += 'Nomes alternativos:\n'
         for i in data['artist']['alternate_names']:returnString += f'{i}\n'
