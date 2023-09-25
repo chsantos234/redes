@@ -1,9 +1,11 @@
 # redes
 
-retornos da api:
+Retornos da api:
 
-* letra da música
+* Letra da música
 
 * Álbuns do artista
 
-* informações do artista
+* Informações do artista
+
+* Músicas do artista
