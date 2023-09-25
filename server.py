@@ -24,7 +24,7 @@ def main():
       client_socket, client_address = server_socket.accept()
       print(f"Conexão recebida de {client_address[0]}:{client_address[1]}")
 
-      data = client_socket.recv(4096).decode('utf-8')
+      data = client_socket.recv(8192).decode('utf-8')
       print(f"Recebido:\n{data}")
 
       # Verifica se a requisição é um POST

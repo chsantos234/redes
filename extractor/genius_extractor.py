@@ -34,7 +34,7 @@ def extractor(clientResponse):
 
     url = f"{request[requestType]}?id={Id}"
 
-    if requestType ==  "letras" or requestType == "info": url += "&text_format=plain"
+    if requestType ==  "letras" or requestType == "info": url += "&text_format=html"
     if requestType == "música": url += "&sort=popularity"
 
     conn.request("GET",url,headers=headers)
@@ -46,7 +46,7 @@ def extractor(clientResponse):
     if requestType == "info":
         returnString += 'Nomes alternativos:\n'
         for i in data['artist']['alternate_names']:returnString += f'{i}\n'
-        returnString += f"\nDescrição:\n{data['artist']['description']['plain']}"
+        returnString += f"\nDescrição:\n{data['artist']['description']['html']}"
     if requestType == "álbuns":
         returnString += "Álbuns:\n"
         for i in data['albums']:
@@ -57,6 +57,6 @@ def extractor(clientResponse):
             returnString += f"{i['full_title']} - {i['id']}\n"
     if requestType == "letras":
         returnString = f"Letras de {data['lyrics']['tracking_data']['title']}:\n\n"
-        returnString += data['lyrics']['lyrics']['body']['plain']
+        returnString += data['lyrics']['lyrics']['body']['html']
     
     return returnString
