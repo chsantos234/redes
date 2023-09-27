@@ -13,7 +13,6 @@ def send_dns_query(hostName, dnsIp):
     try:
         # Construção da mensagem a ser enviada
         query = query_constructor(hostName)
-        print(query)
 
         # Envio da mensagem ao servidor
         udpSocket.sendto(query, serverAddress)
