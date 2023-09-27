@@ -52,11 +52,12 @@ def response_translator(response):
     first = True
     for authority in dns_response.authority:
         if first: 
-            print("Servidores autoritativos:\n")
+            print(f"Dominios de Topo Genericos:")
             first = False
         print(authority)
 
 if __name__ == "__main__":
-    hostName = "tiktok.com"
+    hostName = "netflix.com"
     dnsServeIp = "8.8.8.8"
+    print(f"dominio:{hostName}\nip dns:{dnsServeIp}")
     send_dns_query(hostName, dnsServeIp)
