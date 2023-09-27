@@ -13,6 +13,7 @@ def send_dns_query(hostName, dnsIp):
     try:
         # Construção da mensagem a ser enviada
         query = query_constructor(hostName)
+        print(query)
 
         # Envio da mensagem ao servidor
         udpSocket.sendto(query, serverAddress)
@@ -41,21 +42,22 @@ def query_constructor(hostName):
     return query
 
 def response_translator(response):
-    response = str(response.hex())
-
-    response_bytes = bytes.fromhex(response)
-    dns_response = message.from_wire(response_bytes)
-
+    # tradução byte para query.message
+    dns_response = response
+    dns_response = message.from_wire(dns_response)
+    
     print("Resposta do servidor DNS:")
     for answer in dns_response.answer:
         print(answer)
     
     first = True
     for authority in dns_response.authority:
-        if first: print(f"Servidores autoritativos:\n{authority}")
-        first = False
+        if first: 
+            print("Servidores autoritativos:\n")
+            first = False
+        print(authority)
 
 if __name__ == "__main__":
-    hostName = "google.com"
+    hostName = "tiktok.com"
     dnsServeIp = "8.8.8.8"
     send_dns_query(hostName, dnsServeIp)
